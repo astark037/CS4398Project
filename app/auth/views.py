@@ -18,7 +18,7 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         employee = Employee(email=form.email.data,
-                            employee_id=form.employee_id.data,
+                            id=form.id.data,
                             first_name=form.first_name.data,
                             last_name=form.last_name.data,
                             password=form.password.data)
@@ -46,7 +46,7 @@ def login():
 
         # check whether employee exists in the database and whether
         # the password entered matches the password in the database
-        employee = Employee.query.filter_by(employee_id=form.employee_id.data).first()
+        employee = Employee.query.filter_by(id=form.id.data).first()
         if employee is not None and employee.verify_password(
                 form.password.data):
             # log employee in

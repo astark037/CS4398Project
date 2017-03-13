@@ -16,7 +16,7 @@ class Employee(UserMixin, db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    employee_id = db.Column(db.Integer, unique=True)
+    #employee_id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(60), index=True)
     last_name = db.Column(db.String(60), index=True)
     email = db.Column(db.String(60), index=True, unique=True)
