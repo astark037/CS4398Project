@@ -2,7 +2,7 @@
 
 from flask_wtf import FlaskForm
 from wtforms import PasswordField, StringField, SubmitField, ValidationError
-from wtforms.validators import DataRequired, Email, EqualTo
+from wtforms.validators import DataRequired, Email, EqualTo, Length, AnyOf
 
 from ..models import Employee
 
@@ -12,8 +12,14 @@ class RegistrationForm(FlaskForm):
     """
     email = StringField('Email', validators=[DataRequired(), Email()])
     id = StringField('Employee ID', validators=[DataRequired()])
-    first_name = StringField('First Name', validators=[DataRequired()])
-    last_name = StringField('Last Name', validators=[DataRequired()])
+    first_name = StringField('First Name', validators=[DataRequired(), Length(min=1, max=60)])
+    last_name = StringField('Last Name', validators=[DataRequired(), Length(min=1, max=60)])
+    middle_name = StringField('Middle Name', validators=[Length(min=1, max=60)])
+    home_address = StringField('Home Address', validators=[DataRequired(), Length(max=60)])
+    mailing_address = StringField('Mailing Address', validators=[DataRequired(), Length(max=60)])
+    home_phone = StringField('Home Phone', validators=[Length(max=15)])
+    cell_phone = StringField('Cell Phone', validators=[DataRequired(), Length(max=15)])
+
     password = PasswordField('Password', validators=[
                                         DataRequired(),
                                         EqualTo('confirm_password')

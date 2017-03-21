@@ -19,18 +19,25 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand topnav" href="{{ url_for('home.homepage') }}">Employee Self Service for ABC Company</a>
+              <a class="navbar-brand topnav" href="{{ url_for('home.homepage') }}">Employee Self Service</a>
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-right">
-                  {% if current_user.is_authenticated %}
-                    <li><a href="{{ url_for('home.dashboard') }}">Dashboard</a></li>
-                    <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-                    <li><a><i class="fa fa-user"></i>  Hi, {{ current_user.first_name }}!</a></li>
-                  {% else %}
-                    <li><a href="{{ url_for('home.homepage') }}">Home</a></li>
-                    <li><a href="{{ url_for('auth.register') }}">Register</a></li>
-                    <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                      {% if current_user.is_authenticated %}
+                        {% if current_user.is_admin %}
+                            <li><a href="{{ url_for('home.admin_dashboard') }}">Dashboard</a></li>
+                            <li><a href="{{ url_for('admin.list_personalinfos') }}">Personal Info</a></li>
+                            <li><a href="{{ url_for('admin.list_payrolls') }}">Payroll Info</a></li>
+                            <li><a href="{{ url_for('admin.list_compensations') }}">Compensation</a></li>
+                        {% else %}
+                            <li><a href="{{ url_for('home.dashboard') }}">Dashboard</a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                        <li><a><i class="fa fa-user"></i>  Hi, {{ current_user.username }}!</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('home.homepage') }}">Home</a></li>
+                        <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+                        <li><a href="{{ url_for('auth.login') }}">Login</a></li>
                   {% endif %}
               </ul>
           </div>

@@ -1,0 +1,30 @@
+<!-- app/templates/admin/compensations/compensation.html -->
+
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% block title %}
+    {% if add_compensation %}
+        Add Compensation
+    {% else %}
+        Edit Compensation
+    {% endif %}
+{% endblock %}
+{% block body %}
+<div class="content-section">
+ <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <div class="center">
+            {% if add_Compensation %}
+                <h1>Add Compensation</h1>
+            {% else %}
+                <h1>Edit Compensation</h1>
+            {% endif %}
+            <br/>
+            {{ wtf.quick_form(form) }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

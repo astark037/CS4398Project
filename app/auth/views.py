@@ -21,7 +21,12 @@ def register():
                             id=form.id.data,
                             first_name=form.first_name.data,
                             last_name=form.last_name.data,
-                            password=form.password.data)
+                            password=form.password.data,
+                            middle_name=form.middle_name.data,
+                            home_address=form.home_address.data,
+                            mailing_address=form.mailing_address.data,
+                            home_phone=form.home_phone.data,
+                            cell_phone=form.cell_phone.data)
 
         # add employee to the database
         db.session.add(employee)
@@ -52,8 +57,11 @@ def login():
             # log employee in
             login_user(employee)
 
-            # redirect to the dashboard page after login
-            return redirect(url_for('home.dashboard'))
+            # redirect to the appropriate dashboard page
+            if employee.is_admin:
+                return redirect(url_for('home.admin_dashboard'))
+            else:
+                return redirect(url_for('home.dashboard'))
 
         # when login details are incorrect
         else:
