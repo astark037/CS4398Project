@@ -140,7 +140,15 @@ def edit_payroll(id):
                            form=form, title="Edit Payroll")
 
 
-
+@home.route('/compensations')
+@login_required
+def list_compensations():
+    """
+    List compensation info for all employees
+    """
+    compensations = Compensation.query.filter_by(eid=current_user.id).all()
+    return render_template('home/compensations.html',
+                           compensations=compensations, title='Compensations')
 
 
 @home.route('/admin/dashboard')
