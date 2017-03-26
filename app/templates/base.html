@@ -31,6 +31,9 @@
                             <li><a href="{{ url_for('admin.list_compensations') }}">Compensation</a></li>
                         {% else %}
                             <li><a href="{{ url_for('home.dashboard') }}">Dashboard</a></li>
+                            <li><a href="{{ url_for('home.edit_personalinfo', id=current_user.id) }}">Personal Info</a></li>
+                            <li><a href="{{ url_for('home.list_payrolls') }}">Payroll Info</a></li>
+
                         {% endif %}
                         <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
                         <li><a><i class="fa fa-user"></i>  Hi, {{ current_user.username }}!</a></li>
