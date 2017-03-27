@@ -179,14 +179,29 @@ def delete_payroll(id):
     # Compensation Views
 ##############################################
 
-@admin.route('/compensations')
+@admin.route('/compensations/selectemployee', methods=['GET', 'POST'])
 @login_required
-def list_compensations():
+def select_employee():
+    """
+    List personal info for all employees
+    """
+    check_admin()
+
+    employees = Employee.query.all()
+
+    return render_template('admin/compensations/selectemployee.html',
+                           employees=employees, title="Select Employee")
+
+
+
+@admin.route('/compensations/list/<int:id>', methods=['GET', 'POST'])
+@login_required
+def list_compensations(id):
     check_admin()
     """
     List compensation info for all employees
     """
-    compensations = Compensation.query.all()
+    compensations = Compensation.query.filter_by(eid=id).all()
     return render_template('admin/compensations/compensations.html',
                            compensations=compensations, title='Compensations')
 
