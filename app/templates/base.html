@@ -29,6 +29,8 @@
                             <li><a href="{{ url_for('admin.list_personalinfos') }}">Personal Info</a></li>
                             <li><a href="{{ url_for('admin.list_payrolls') }}">Payroll Info</a></li>
                             <li><a href="{{ url_for('admin.select_employee') }}">Compensation</a></li>
+                            <li><a href="{{ url_for('admin.add_employee') }}">Add Employee</a></li>
+                            
                         {% else %}
                             <li><a href="{{ url_for('home.dashboard') }}">Dashboard</a></li>
                             <li><a href="{{ url_for('home.edit_personalinfo', id=current_user.id) }}">Personal Info</a></li>
@@ -40,7 +42,6 @@
                         <li><a><i class="fa fa-user"></i>  Hi, {{ current_user.username }}!</a></li>
                     {% else %}
                         <li><a href="{{ url_for('home.homepage') }}">Home</a></li>
-                        <li><a href="{{ url_for('auth.register') }}">Register</a></li>
                         <li><a href="{{ url_for('auth.login') }}">Login</a></li>
                   {% endif %}
               </ul>
@@ -62,8 +63,6 @@
                         {% if current_user.is_authenticated %}
                           <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
                         {% else %}
-                          <li><a href="{{ url_for('auth.register') }}">Register</a></li>
-                          <li class="footer-menu-divider">&sdot;</li>
                           <li><a href="{{ url_for('auth.login') }}">Login</a></li>
                         {% endif %}
                     </ul>

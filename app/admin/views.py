@@ -4,7 +4,7 @@ from flask import abort, flash, redirect, render_template, url_for
 from flask_login import current_user, login_required
 
 from . import admin
-from forms import PersonalInfoForm, PayrollForm, CompensationForm
+from forms import PersonalInfoForm, PayrollForm, CompensationForm, RegistrationForm
 from .. import db
 from ..models import Employee, Payroll, Compensation
 
@@ -15,6 +15,43 @@ def check_admin():
     """
     if not current_user.is_admin:
         abort(403)
+
+
+
+@admin.route('/addemployee', methods=['GET', 'POST'])
+def add_employee():
+    """
+    Handle requests to the /addemployee route
+    Add an employee to the database through the registration form
+    """
+
+    check_admin()
+    
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        employee = Employee(email=form.email.data,
+                            id=form.id.data,
+                            first_name=form.first_name.data,
+                            last_name=form.last_name.data,
+                            password=form.password.data,
+                            middle_name=form.middle_name.data,
+                            home_address=form.home_address.data,
+                            mailing_address=form.mailing_address.data,
+                            home_phone=form.home_phone.data,
+                            cell_phone=form.cell_phone.data)
+
+        # add employee to the database
+        db.session.add(employee)
+        db.session.commit()
+        flash('You have successfully registered! You may now login.')
+
+        # redirect to the login page
+        return redirect(url_for('home.dashboard'))
+
+    # load registration template
+    return render_template('admin/register.html', form=form, title='Register')
+
+
 
 #############################################
 # Peronsal Info Views
@@ -58,7 +95,7 @@ def edit_personalinfo(id):
         flash('You have successfully edited the employee.')
 
         # redirect to the employee page
-        return redirect(url_for('admin.list_personalinfos'))
+        return redirect(url_for('home.list_personalinfos'))
 
     form.first_name.data = personalinfo.first_name
     form.last_name.data = personalinfo.last_name
