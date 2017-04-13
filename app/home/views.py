@@ -105,7 +105,7 @@ def add_payroll():
         db.session.commit()
         flash('You have successfully added new payroll info.')
         # redirect to the payrolls page
-        return redirect(url_for('home.dashboard'))
+        return redirect(url_for('home.list_payrolls'))
         
     return render_template('home/payroll.html', add_payroll=add_payroll,
                        form=form, title='Add Payroll')
@@ -134,7 +134,7 @@ def edit_payroll(id):
         flash('You have successfully edited the payroll info.')
 
         # redirect to the payrolls page
-        return redirect(url_for('home.dashboard'))
+        return redirect(url_for('home.list_payrolls'))
 
     form.account_type.data = payroll.account_type
     form.account_num.data = payroll.account_num
