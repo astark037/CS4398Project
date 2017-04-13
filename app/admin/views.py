@@ -154,14 +154,16 @@ def add_payroll():
                           amount_withheld=form.amount_withheld.data,
                           num_allowances=form.num_allowances.data,
                           claim_exemption=form.claim_exemption.data,
-                         eid=form.eid.data)
-                          
-        try:
+                          eid=form.eid.data)
+
+        if Payroll.query.filter_by(eid=form.eid.data).first():
+            flash('ERROR: Payroll info has already been entered for this employee.')
+    
+        
+        else:
             db.session.add(payroll)
             db.session.commit()
             flash('You have successfully added new payroll info.')
-        except:
-            flash('Payroll info has already been entered for this employee.')
         # redirect to the payrolls page
         return redirect(url_for('admin.list_payrolls'))
         
