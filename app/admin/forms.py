@@ -99,8 +99,6 @@ class PayrollForm(FlaskForm):
     def validate_eid(self, field):
         if Employee.query.filter_by(id=field.data).first() == None:
             raise ValidationError('Employee ID not found.')
-        if Payroll.query.filter_by(eid=field.data).first():
-            raise ValidationError('Payroll info has already been entered for this employee.')
 
 class CompensationForm(FlaskForm):
     """

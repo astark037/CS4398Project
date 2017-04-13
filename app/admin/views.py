@@ -156,9 +156,12 @@ def add_payroll():
                           claim_exemption=form.claim_exemption.data,
                          eid=form.eid.data)
                           
-        db.session.add(payroll)
-        db.session.commit()
-        flash('You have successfully added new payroll info.')
+        try:
+            db.session.add(payroll)
+            db.session.commit()
+            flash('You have successfully added new payroll info.')
+        except:
+            flash('Payroll info has already been entered for this employee.')
         # redirect to the payrolls page
         return redirect(url_for('admin.list_payrolls'))
         
