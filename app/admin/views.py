@@ -31,12 +31,15 @@ def add_employee():
     if form.validate_on_submit():
         employee = Employee(email=form.email.data,
                             id=form.id.data,
+                            dob=form.dob.data,
                             first_name=form.first_name.data,
                             last_name=form.last_name.data,
                             password=form.password.data,
                             middle_name=form.middle_name.data,
-                            home_address=form.home_address.data,
-                            mailing_address=form.mailing_address.data,
+                            street=form.street.data,
+                            city=form.city.data,
+                            zip=form.zip.data,
+                            state=form.state.data,
                             home_phone=form.home_phone.data,
                             cell_phone=form.cell_phone.data)
 
@@ -54,7 +57,7 @@ def add_employee():
 
 
 #############################################
-# Peronsal Info Views
+# Personal Info Views
 #############################################
 
 @admin.route('/personalinfos', methods=['GET', 'POST'])
@@ -85,9 +88,12 @@ def edit_personalinfo(id):
         personalinfo.first_name = form.first_name.data
         personalinfo.last_name = form.last_name.data
         personalinfo.middle_name = form.middle_name.data
+        personalinfo.dob = form.dob.data
         personalinfo.email = form.email.data
-        personalinfo.home_address = form.home_address.data
-        personalinfo.mailing_address = form.mailing_address.data
+        personalinfo.street = form.street.data
+        personalinfo.city = form.city.data
+        personalinfo.zip = form.zip.data
+        personalinfo.state = form.state.data
         personalinfo.home_phone = form.home_phone.data
         personalinfo.cell_phone = form.cell_phone.data
 
@@ -95,14 +101,17 @@ def edit_personalinfo(id):
         flash('You have successfully edited the employee.')
 
         # redirect to the employee page
-        return redirect(url_for('home.list_personalinfos'))
+        return redirect(url_for('admin.list_personalinfos'))
 
     form.first_name.data = personalinfo.first_name
     form.last_name.data = personalinfo.last_name
     form.middle_name.data = personalinfo.middle_name
+    form.dob.data = personalinfo.dob
     form.email.data = personalinfo.email
-    form.home_address.data = personalinfo.home_address
-    form.mailing_address.data = personalinfo.mailing_address
+    form.street.data = personalinfo.street
+    form.city.data = personalinfo.city
+    form.zip.data = personalinfo.zip
+    form.state.data = personalinfo.state
     form.home_phone.data = personalinfo.home_phone
     form.cell_phone.data = personalinfo.cell_phone
 
@@ -220,7 +229,7 @@ def delete_payroll(id):
 @login_required
 def select_employee():
     """
-    List personal info for all employees
+    Select employee to view Compensation
     """
     check_admin()
 
@@ -255,7 +264,8 @@ def add_compensation():
 
     form = CompensationForm()
     if form.validate_on_submit(): 
-        compensation = Compensation(pay_period=form.pay_period.data,
+        compensation = Compensation(start_date=form.start_date.data,
+                          end_date=form.end_date.data,
                           net_pay=form.net_pay.data,
                           gross_pay=form.gross_pay.data,
                           hourly_wage=form.hourly_wage.data,
@@ -285,7 +295,8 @@ def edit_compensation(id):
     compensation = Compensation.query.get_or_404(id)
     form = CompensationForm(obj=compensation)
     if form.validate_on_submit():
-        compensation.pay_period = form.pay_period.data
+        compensation.start_date = form.start_date.data
+        compensation.end_date = form.end_date.data
         compensation.net_pay = form.net_pay.data
         compensation.gross_pay = form.gross_pay.data
         compensation.hourly_wage = form.hourly_wage.data
@@ -297,7 +308,8 @@ def edit_compensation(id):
         # redirect to the compensations page
         return redirect(url_for('admin.list_compensations'))
 
-    form.pay_period.data = compensation.pay_period
+    form.start_date.data = compensation.start_date
+    form.end_date.data = compensation.end_date
     form.net_pay.data = compensation.net_pay
     form.gross_pay.data = compensation.gross_pay
     form.hourly_wage.data = compensation.hourly_wage

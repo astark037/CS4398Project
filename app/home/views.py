@@ -36,9 +36,12 @@ def edit_personalinfo(id):
         personalinfo.first_name = form.first_name.data
         personalinfo.last_name = form.last_name.data
         personalinfo.middle_name = form.middle_name.data
+        personalinfo.dob = form.dob.data
         personalinfo.email = form.email.data
-        personalinfo.home_address = form.home_address.data
-        personalinfo.mailing_address = form.mailing_address.data
+        personalinfo.street = form.street.data
+        personalinfo.city = form.city.data
+        personalinfo.zip = form.zip.data
+        personalinfo.state = form.state.data
         personalinfo.home_phone = form.home_phone.data
         personalinfo.cell_phone = form.cell_phone.data
 
@@ -51,9 +54,12 @@ def edit_personalinfo(id):
     form.first_name.data = personalinfo.first_name
     form.last_name.data = personalinfo.last_name
     form.middle_name.data = personalinfo.middle_name
+    form.dob.data = personalinfo.dob
     form.email.data = personalinfo.email
-    form.home_address.data = personalinfo.home_address
-    form.mailing_address.data = personalinfo.mailing_address
+    form.street.data = personalinfo.street
+    form.city.data = personalinfo.city
+    form.zip.data = personalinfo.zip
+    form.state.data = personalinfo.state
     form.home_phone.data = personalinfo.home_phone
     form.cell_phone.data = personalinfo.cell_phone
 

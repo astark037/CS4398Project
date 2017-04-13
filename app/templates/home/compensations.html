@@ -19,10 +19,11 @@
               <thead>
                 <tr>
                   <th width="10%"> ID </th>
-                  <th width="15%"> Pay Period </th>
+                  <th width="20%"> Start Date </th>
+                  <th width="20%"> End Date </th>
                   <th width="15%"> Net Pay </th>
                   <th width="15%"> Gross Pay </th>
-                  <th width="15%"> Hourly Wage </th>
+                  <th width="10%"> Hourly Wage </th>
                   <th width="10%"> Hours Worked </th>
                 </tr>
               </thead>
@@ -30,7 +31,8 @@
               {% for compensation in compensations %}
                 <tr>
                   <td> {{ compensation.eid }} </td>
-                  <td> {{ compensation.pay_period }} </td>
+                  <td> {{ compensation.start_date }} </td>
+                  <td> {{ compensation.end_date }} </td>
                   <td> {{ compensation.net_pay }} </td>
                   <td> {{ compensation.gross_pay }} </td>
                   <td> {{ compensation.hourly_wage }} </td>
