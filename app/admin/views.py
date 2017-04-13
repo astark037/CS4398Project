@@ -281,7 +281,7 @@ def add_compensation():
         db.session.commit()
         flash('You have successfully added new compensation info.')
         # redirect to the compensations page
-        return redirect(url_for('admin.list_compensations'))
+        return redirect(url_for('admin.select_employee'))
         
     return render_template('admin/compensations/compensation.html', add_compensation=add_compensation,
                        form=form, title='Add Compensation')
@@ -311,7 +311,7 @@ def edit_compensation(id):
         flash('You have successfully edited the compensation info.')
 
         # redirect to the compensations page
-        return redirect(url_for('admin.list_compensations'))
+        return redirect(url_for('admin.select_employee'))
 
     form.start_date.data = compensation.start_date
     form.end_date.data = compensation.end_date
@@ -338,6 +338,6 @@ def delete_compensation(id):
     flash('You have successfully deleted the compensation info.')
 
     # redirect to the compensations page
-    return redirect(url_for('admin.list_compensations'))
+    return redirect(url_for('admin.select_employee'))
 
     return render_template(title="Delete compensation")
