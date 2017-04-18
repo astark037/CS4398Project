@@ -1,0 +1,70 @@
+!-- app/templates/home/personalinfos.html -->
+
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Personal Info{% endblock %}
+{% block body %}
+<div class="content-section">
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <br/>
+        {{ utils.flashed_messages() }}
+        <br/>
+        <h1 style="text-align:center;">Personal Info</h1>
+        {% if personalinfos %}
+          <hr class="intro-divider">
+          <div class="center">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th width="5%"> ID </th>
+                  <th width="10%"> First Name </th>
+                  <th width="10%"> Last Name </th>
+                  <th width="10%"> Middle Name </th>
+                  <th width="5%"> DOB </th>
+                  <th width="10%"> Email </th>
+                  <th width="10%"> Street </th>
+                  <th width="5%"> City </th>
+                  <th width="5%"> State </th>
+                  <th width="5%"> ZIP </th>
+                  <th width="10%"> Home Phone </th>
+                  <th width="10%"> Cell Phone </th>
+                  <th width="5%"> Edit </th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+              {% for personalinfo in personalinfos %}
+                <tr>
+                  <td> {{ personalinfo.eid }} </td>
+                  <td> {{ personalinfo.first_name }} </td>
+                  <td> {{ personalinfo.last_name }} </td>
+                  <td> {{ personalinfo.middle_name }} </td>
+                  <td> {{ personalinfo.dob }} </td>
+                  <td> {{ personalinfo.email }} </td>
+                  <td> {{ personalinfo.street }} </td>
+                  <td> {{ personalinfo.city }} </td>
+                  <td> {{ personalinfo.state }} </td>
+                  <td> {{ personalinfo.zip }} </td>
+                  <td> {{ personalinfo.home_phone }} </td>
+                  <td> {{ personalinfo.cell_phone }} </td>
+                  <td>
+                    <a href="{{ url_for('home.edit_personalinfo', id=personalinfo.id) }}">
+                      <i class="fa fa-pencil"></i> Edit 
+                    </a>
+                  </td>
+                  
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div style="text-align: center">
+       {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

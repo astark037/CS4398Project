@@ -23,6 +23,19 @@ def dashboard():
     """
     return render_template('home/dashboard.html', title="Dashboard")
 
+@home.route('/personalinfos')
+@login_required
+def list_personalinfos():
+    """
+    List personal info for this employee
+    """
+    personalinfos = Employee.query.filter_by(id=current_user.id).all()
+    return render_template('home/personalinfos.html',
+                           personalinfos=personalinfos, title='Personalinfos')
+
+
+
+
 @home.route('/personalinfos/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit_personalinfo(id):
@@ -49,7 +62,7 @@ def edit_personalinfo(id):
         flash('You have successfully edited the employee.')
 
         # redirect to the employee page
-        return redirect(url_for('home.dashboard'))
+        return redirect(url_for('home.list_personalinfos'))
 
     form.first_name.data = personalinfo.first_name
     form.last_name.data = personalinfo.last_name

@@ -19,19 +19,19 @@ class RegistrationForm(FlaskForm):
     street = StringField('Street', validators=[DataRequired(), Length(max=60)])
     city = StringField('City', validators=[DataRequired(), Length(max=60)])
     zip = IntegerField('ZIP', validators=[DataRequired(), NumberRange(min=1000, max=99999)])
-    state = SelectField('State', choices = [('Alabama', 'AL'), ('Alaska', 'AK'), ('Arizona', 'AZ'), ('Arkansas', 'AR'), 
-                                            ('California', 'CA'), ('Colorado', 'CO'), ('Connecticut', 'CT'), ('Delaware', 'DE'), 
-                                            ('Florida', 'FL'), ('Georgia', 'GA'), ('Hawaii', 'HI'), ('Idaho', 'ID'), 
-                                            ('Illinois', 'IL'), ('Indiana', 'IN'), ('Iowa', 'IA'), ('Kansas', 'KS'), 
-                                            ('Kentucky', 'KY'), ('Louisian', 'LA'), ('Maine', 'ME'), ('Maryland', 'MD'), 
-                                            ('Massachusetts', 'MA'), ('Michigan', 'MI'), ('Minnesota', 'MN'), ('Mississippi', 'MS'), 
-                                            ('Missouri', 'MO'), ('Montana', 'MT'), ('Nebraska', 'NE'), ('Nevada', 'NV'), ('New Hampshire', 'NH'),
-                                            ('New Jersey', 'NJ'), ('New Mexico', 'NM'), ('New York', 'NY'),
-                                            ('North Carolina', 'NC'), ('North Dakota', 'ND'), ('Ohio', 'OH'), ('Oklahoma', 'OK'), 
-                                            ('Oregon', 'OR'), ('Pennsylvania', 'PA'), ('Rhode Island', 'RI'), ('South Carolina', 'SC'), 
-                                            ('South Dakota', 'SD'), ('Tennessee', 'TN'), ('Texas', 'TX'), ('Utah', 'UT'), 
-                                            ('Vermont', 'VT'), ('Virginia', 'VA'), ('Washington', 'WA'), ('West Virginia', 'WV'), 
-                                            ('Wisconsin', 'WI'), ('Wyoming', 'WY')])
+    state = SelectField('State', choices = [('AL', 'AL'), ('AK', 'AK'), ('AZ', 'AZ'), ('AR', 'AR'), 
+                                            ('CA', 'CA'), ('CO', 'CO'), ('CT', 'CT'), ('DE', 'DE'), 
+                                            ('FL', 'FL'), ('GA', 'GA'), ('HI', 'HI'), ('ID', 'ID'), 
+                                            ('IL', 'IL'), ('IN', 'IN'), ('IA', 'IA'), ('KS', 'KS'), 
+                                            ('KY', 'KY'), ('LA', 'LA'), ('ME', 'ME'), ('MD', 'MD'), 
+                                            ('MA', 'MA'), ('MI', 'MI'), ('MN', 'MN'), ('MS', 'MS'), 
+                                            ('MO', 'MO'), ('MT', 'MT'), ('NE', 'NE'), ('NV', 'NV'), ('NH', 'NH'),
+                                            ('NJ', 'NJ'), ('NM', 'NM'), ('NY', 'NY'),
+                                            ('NC', 'NC'), ('ND', 'ND'), ('OH', 'OH'), ('OK', 'OK'), 
+                                            ('OR', 'OR'), ('PA', 'PA'), ('RI', 'RI'), ('SC', 'SC'), 
+                                            ('SD', 'SD'), ('TN', 'TN'), ('TX', 'TX'), ('UT', 'UT'), 
+                                            ('VT', 'VT'), ('VA', 'VA'), ('WA', 'WA'), ('WV', 'WV'), 
+                                            ('WI', 'WI'), ('WY', 'WY')])
     home_phone = IntegerField('Home Phone')
     cell_phone = IntegerField('Cell Phone', validators=[DataRequired()])
 
@@ -64,19 +64,19 @@ class PersonalInfoForm(FlaskForm):
     street = StringField('Street', validators=[DataRequired(), Length(max=60)])
     city = StringField('City', validators=[DataRequired(), Length(max=60)])
     zip = IntegerField('ZIP', validators=[DataRequired(), NumberRange(min=1000, max=99999)])
-    state = SelectField('State', choices = [('Alabama', 'AL'), ('Alaska', 'AK'), ('Arizona', 'AZ'), ('Arkansas', 'AR'), 
-                                            ('California', 'CA'), ('Colorado', 'CO'), ('Connecticut', 'CT'), ('Delaware', 'DE'), 
-                                            ('Florida', 'FL'), ('Georgia', 'GA'), ('Hawaii', 'HI'), ('Idaho', 'ID'), 
-                                            ('Illinois', 'IL'), ('Indiana', 'IN'), ('Iowa', 'IA'), ('Kansas', 'KS'), 
-                                            ('Kentucky', 'KY'), ('Louisian', 'LA'), ('Maine', 'ME'), ('Maryland', 'MD'), 
-                                            ('Massachusetts', 'MA'), ('Michigan', 'MI'), ('Minnesota', 'MN'), ('Mississippi', 'MS'), 
-                                            ('Missouri', 'MO'), ('Montana', 'MT'), ('Nebraska', 'NE'), ('Nevada', 'NV'), ('New Hampshire', 'NH'),
-                                            ('New Jersey', 'NJ'), ('New Mexico', 'NM'), ('New York', 'NY'),
-                                            ('North Carolina', 'NC'), ('North Dakota', 'ND'), ('Ohio', 'OH'), ('Oklahoma', 'OK'), 
-                                            ('Oregon', 'OR'), ('Pennsylvania', 'PA'), ('Rhode Island', 'RI'), ('South Carolina', 'SC'), 
-                                            ('South Dakota', 'SD'), ('Tennessee', 'TN'), ('Texas', 'TX'), ('Utah', 'UT'), 
-                                            ('Vermont', 'VT'), ('Virginia', 'VA'), ('Washington', 'WA'), ('West Virginia', 'WV'), 
-                                            ('Wisconsin', 'WI'), ('Wyoming', 'WY')])
+    state = SelectField('State', choices = [('AL', 'AL'), ('AK', 'AK'), ('AZ', 'AZ'), ('AR', 'AR'), 
+                                            ('CA', 'CA'), ('CO', 'CO'), ('CT', 'CT'), ('DE', 'DE'), 
+                                            ('FL', 'FL'), ('GA', 'GA'), ('HI', 'HI'), ('ID', 'ID'), 
+                                            ('IL', 'IL'), ('IN', 'IN'), ('IA', 'IA'), ('KS', 'KS'), 
+                                            ('KY', 'KY'), ('LA', 'LA'), ('ME', 'ME'), ('MD', 'MD'), 
+                                            ('MA', 'MA'), ('MI', 'MI'), ('MN', 'MN'), ('MS', 'MS'), 
+                                            ('MO', 'MO'), ('MT', 'MT'), ('NE', 'NE'), ('NV', 'NV'), ('NH', 'NH'),
+                                            ('NJ', 'NJ'), ('NM', 'NM'), ('NY', 'NY'),
+                                            ('NC', 'NC'), ('ND', 'ND'), ('OH', 'OH'), ('OK', 'OK'), 
+                                            ('OR', 'OR'), ('PA', 'PA'), ('RI', 'RI'), ('SC', 'SC'), 
+                                            ('SD', 'SD'), ('TN', 'TN'), ('TX', 'TX'), ('UT', 'UT'), 
+                                            ('VT', 'VT'), ('VA', 'VA'), ('WA', 'WA'), ('WV', 'WV'), 
+                                            ('WI', 'WI'), ('WY', 'WY')])
     home_phone = IntegerField('Home Phone')
     cell_phone = IntegerField('Cell Phone', validators=[DataRequired()])
     submit = SubmitField('Submit')

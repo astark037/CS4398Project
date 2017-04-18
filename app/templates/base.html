@@ -33,7 +33,7 @@
                             
                         {% else %}
                             <li><a href="{{ url_for('home.dashboard') }}">Dashboard</a></li>
-                            <li><a href="{{ url_for('home.edit_personalinfo', id=current_user.id) }}">Personal Info</a></li>
+                            <li><a href="{{ url_for('home.list_personalinfos', id=current_user.id) }}">Personal Info</a></li>
                             <li><a href="{{ url_for('home.list_payrolls') }}">Payroll Info</a></li>
                             <li><a href="{{ url_for('home.list_compensations') }}">Compensation</a></li>
 

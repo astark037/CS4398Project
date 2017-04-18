@@ -31,9 +31,6 @@ class Employee(UserMixin, db.Model):
     payroll = db.relationship("Payroll", uselist=False, back_populates="employee")
     compensations = db.relationship("Compensation", back_populates="employee")
     password_hash = db.Column(db.String(128))
-    #personal_id = db.Column(db.Integer, db.ForeignKey('personal_info.id'))
-    #payroll_id = db.Column(db.Integer, db.ForeignKey('payroll_info.id'))
-    #compensation_id = db.Column(db.Integer, db.ForeignKey('compensation_info.id'))
     is_admin = db.Column(db.Boolean, default=False)
 
     @property
