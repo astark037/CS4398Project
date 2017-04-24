@@ -2,7 +2,7 @@
 
 from flask_wtf import FlaskForm
 from wtforms import PasswordField, StringField, SubmitField, ValidationError, IntegerField, BooleanField, DecimalField, SelectField, DateField
-from wtforms.validators import DataRequired, Email, EqualTo, Length, NumberRange, AnyOf
+from wtforms.validators import DataRequired, Email, EqualTo, Length, NumberRange, AnyOf, Optional
 from ..models import Employee, Payroll, Compensation
 
 
@@ -14,10 +14,10 @@ class RegistrationForm(FlaskForm):
     id = StringField('Employee ID', validators=[DataRequired()])
     first_name = StringField('First Name', validators=[DataRequired(), Length(min=1, max=60)])
     last_name = StringField('Last Name', validators=[DataRequired(), Length(min=1, max=60)])
-    middle_name = StringField('Middle Name', validators=[Length(min=1, max=60)])
+    middle_name = StringField('Middle Name', validators=[Optional(), Length(min=1, max=60)], default='None')
     dob = DateField('Date of Birth (format: YYYY-MM-DD)', validators=[DataRequired()], format='%Y-%m-%d')
-    street = StringField('Street', validators=[DataRequired(), Length(max=60)])
-    city = StringField('City', validators=[DataRequired(), Length(max=60)])
+    street = StringField('Street', validators=[DataRequired(), Length(min=1, max=60)])
+    city = StringField('City', validators=[DataRequired(), Length(min=1, max=60)])
     zip = IntegerField('ZIP', validators=[DataRequired(), NumberRange(min=1000, max=99999)])
     state = SelectField('State', choices = [('AL', 'AL'), ('AK', 'AK'), ('AZ', 'AZ'), ('AR', 'AR'), 
                                             ('CA', 'CA'), ('CO', 'CO'), ('CT', 'CT'), ('DE', 'DE'), 
@@ -32,8 +32,8 @@ class RegistrationForm(FlaskForm):
                                             ('SD', 'SD'), ('TN', 'TN'), ('TX', 'TX'), ('UT', 'UT'), 
                                             ('VT', 'VT'), ('VA', 'VA'), ('WA', 'WA'), ('WV', 'WV'), 
                                             ('WI', 'WI'), ('WY', 'WY')])
-    home_phone = IntegerField('Home Phone')
-    cell_phone = IntegerField('Cell Phone', validators=[DataRequired()])
+    home_phone = IntegerField('Home Phone (Format: xxxxxxxxxx)', validators=[Optional()], default='None')
+    cell_phone = IntegerField('Cell Phone (Format: xxxxxxxxxx)', validators=[DataRequired()])
 
     password = PasswordField('Password', validators=[
                                         DataRequired(),
@@ -59,10 +59,10 @@ class PersonalInfoForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     first_name = StringField('First Name', validators=[DataRequired(), Length(min=1, max=60)])
     last_name = StringField('Last Name', validators=[DataRequired(), Length(min=1, max=60)])
-    middle_name = StringField('Middle Name', validators=[Length(min=1, max=60)])
+    middle_name = StringField('Middle Name', validators=[Optional(), Length(min=1, max=60)], default='None')
     dob = DateField('Date of Birth (format: YYYY-MM-DD)', validators=[DataRequired()], format='%Y-%m-%d')
-    street = StringField('Street', validators=[DataRequired(), Length(max=60)])
-    city = StringField('City', validators=[DataRequired(), Length(max=60)])
+    street = StringField('Street', validators=[DataRequired(), Length(min=1, max=60)])
+    city = StringField('City', validators=[DataRequired(), Length(min=1, max=60)])
     zip = IntegerField('ZIP', validators=[DataRequired(), NumberRange(min=1000, max=99999)])
     state = SelectField('State', choices = [('AL', 'AL'), ('AK', 'AK'), ('AZ', 'AZ'), ('AR', 'AR'), 
                                             ('CA', 'CA'), ('CO', 'CO'), ('CT', 'CT'), ('DE', 'DE'), 
@@ -77,8 +77,8 @@ class PersonalInfoForm(FlaskForm):
                                             ('SD', 'SD'), ('TN', 'TN'), ('TX', 'TX'), ('UT', 'UT'), 
                                             ('VT', 'VT'), ('VA', 'VA'), ('WA', 'WA'), ('WV', 'WV'), 
                                             ('WI', 'WI'), ('WY', 'WY')])
-    home_phone = IntegerField('Home Phone')
-    cell_phone = IntegerField('Cell Phone', validators=[DataRequired()])
+    home_phone = IntegerField('Home Phone (Format: xxxxxxxxxx)', validators=[Optional()], default='None')
+    cell_phone = IntegerField('Cell Phone (Format: xxxxxxxxxx)', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 

@@ -81,7 +81,7 @@ class Payroll(db.Model):
     employee = db.relationship('Employee', back_populates='payroll')
 
     def __repr__(self):
-        return '<Role: {}>'.format(self.name)
+        return '<Payroll: {}>'.format(self.name)
 
 class Compensation(db.Model):
     """
