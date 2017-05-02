@@ -153,7 +153,7 @@ class TestViews(TestBase):
     def test_payrolls_view(self):
         """
         Test that payrolls page is inaccessible without login
-        and redirects to login page then to roles page
+        and redirects to login page then to payrolls page
         """
         target_url = url_for('admin.list_payrolls')
         redirect_url = url_for('auth.login', next=target_url)
@@ -237,9 +237,9 @@ class Logintest(unittest.TestCase):
         driver.find_element_by_id("submit").click()
     
     """
-    Test successful admin editing of employee's personal info
+    Test successful editing of employee's personal info
     """
-    def test_successful_admin_edit_personalinfo(self):
+    def test_admin_edit_personalinfo(self):
         driver = self.driver
         driver.get(self.base_url + "/")
         driver.find_element_by_link_text("Login").click()
@@ -269,7 +269,96 @@ class Logintest(unittest.TestCase):
         driver.find_element_by_id("cell_phone").clear()
         driver.find_element_by_id("cell_phone").send_keys("2811234568")
         driver.find_element_by_id("submit").click()
+
+    def test_admin_edit_payrollinfo(self):
+        driver = self.driver
+        driver.get(self.base_url + "/")
+        driver.find_element_by_link_text("Login").click()
+        driver.find_element_by_id("id").clear()
+        driver.find_element_by_id("id").send_keys("1")
+        driver.find_element_by_id("password").clear()
+        driver.find_element_by_id("password").send_keys("admin")
+        driver.find_element_by_id("submit").click()
+        driver.find_element_by_link_text("Payroll Info").click()
+        driver.find_element_by_link_text("Edit").click()
+        Select(driver.find_element_by_id("account_type")).select_by_visible_text("Checking")
+        driver.find_element_by_id("claim_exemption").click()
+        driver.find_element_by_id("routing_num").clear()
+        driver.find_element_by_id("routing_num").send_keys("987654321")
+        driver.find_element_by_id("amount_withheld").clear()
+        driver.find_element_by_id("amount_withheld").send_keys("8")
+        driver.find_element_by_id("num_allowances").clear()
+        driver.find_element_by_id("num_allowances").send_keys("0")
+        driver.find_element_by_id("submit").click()
+
+
+    def test_employee_edit_personalinfo(self):
+        driver = self.driver
+        driver.get(self.base_url + "/")
+        driver.find_element_by_link_text("Login").click()
+        driver.find_element_by_id("id").clear()
+        driver.find_element_by_id("id").send_keys("1111")
+        driver.find_element_by_id("password").clear()
+        driver.find_element_by_id("password").send_keys("test1")
+        driver.find_element_by_id("submit").click()
+        driver.find_element_by_link_text("Personal Info").click()
+        driver.find_element_by_link_text("Edit").click()
+        driver.find_element_by_id("last_name").clear()
+        driver.find_element_by_id("last_name").send_keys("testL")
+        driver.find_element_by_id("first_name").clear()
+        driver.find_element_by_id("first_name").send_keys("testF")
+        driver.find_element_by_id("middle_name").clear()
+        driver.find_element_by_id("middle_name").send_keys("testM")
+        driver.find_element_by_id("dob").clear()
+        driver.find_element_by_id("dob").send_keys("1988-03-10")
+        driver.find_element_by_id("street").clear()
+        driver.find_element_by_id("street").send_keys("111 Lane")
+        driver.find_element_by_id("city").clear()
+        driver.find_element_by_id("city").send_keys("Austin")
+        driver.find_element_by_id("zip").clear()
+        driver.find_element_by_id("zip").send_keys("78759")
+        driver.find_element_by_id("home_phone").clear()
+        driver.find_element_by_id("home_phone").send_keys("0123456789")
+        driver.find_element_by_id("cell_phone").clear()
+        driver.find_element_by_id("cell_phone").send_keys("0123456789")
+        driver.find_element_by_id("submit").click()
+        driver.find_element_by_link_text("Logout").click()
+
+    def test_employee_edit_payrollinfo(self):
+        driver = self.driver
+        driver.get(self.base_url + "/")
+        driver.find_element_by_link_text("Login").click()
+        driver.find_element_by_id("id").clear()
+        driver.find_element_by_id("id").send_keys("1111")
+        driver.find_element_by_id("password").clear()
+        driver.find_element_by_id("password").send_keys("test1")
+        driver.find_element_by_id("submit").click()
+        driver.find_element_by_link_text("Payroll Info").click()
+        driver.find_element_by_link_text("Edit").click()
+        driver.find_element_by_id("account_num").clear()
+        driver.find_element_by_id("account_num").send_keys("987654321")
+        driver.find_element_by_id("routing_num").clear()
+        driver.find_element_by_id("routing_num").send_keys("123456789")
+        driver.find_element_by_id("amount_withheld").clear()
+        driver.find_element_by_id("amount_withheld").send_keys("2")
+        driver.find_element_by_id("num_allowances").clear()
+        driver.find_element_by_id("num_allowances").send_keys("1")
+        driver.find_element_by_id("claim_exemption").click()
+        driver.find_element_by_id("submit").click()
+
+    def test_employee_view_compensation(self):
+        driver = self.driver
+        driver.get(self.base_url + "/")
+        driver.find_element_by_link_text("Login").click()
+        driver.find_element_by_id("id").clear()
+        driver.find_element_by_id("id").send_keys("1111")
+        driver.find_element_by_id("password").clear()
+        driver.find_element_by_id("password").send_keys("test1")
+        driver.find_element_by_id("submit").click()
+        driver.find_element_by_link_text("Compensation").click()
     
+
+
     def is_element_present(self, how, what):
         try: self.driver.find_element(by=how, value=what)
         except NoSuchElementException as e: return False
