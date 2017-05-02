@@ -50,6 +50,12 @@ p.copyright {
     padding: 10px;
 }
 
+.center2 {
+    margin: auto;
+    width: 80%;
+    padding: 10px;
+}
+
 .content-section {
     padding: 50px 0;
     border-top: 1px solid #e7e7e7;
