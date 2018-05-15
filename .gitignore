@@ -5,3 +5,7 @@ migrations/versions/f2f1fb85d6c7_.py
 migrations/script.py.mako
 migrations/env.py
 migrations/versions/32cd1aa56e70_.py
+.idea/CS4398Project.iml
+instance/
+*.xml
+test descriptions and walkthroughs.docx
