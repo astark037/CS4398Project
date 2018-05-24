@@ -3,3 +3,4 @@
 instance/
 *.xml
 test descriptions and walkthroughs.docx
+migrations/
